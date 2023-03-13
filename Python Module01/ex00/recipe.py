@@ -19,3 +19,12 @@ class Recipe:
             raise ValueError("Recipe type must be a string")
         if not isinstance(self.description, str):
             raise ValueError("Description must be a string")
+
+    def __str__(self):
+        txt = ("Recipe name: " + self.name +  "\n")
+        txt += ("Cooking level: " + str(self.cooking_lvl) +  "\n")
+        txt += ("Cooking time: " + str(self.cooking_time) +  "\n")
+        txt += ("Ingredients: " + ', '.join(self.ingredients) +  "\n")
+        txt += ("Recipe type: " + self.recipe_type +  "\n")
+        txt += ("Description: " + self.description +  "\n")
+        return txt
