@@ -1,6 +1,7 @@
 """ Book class
 """
 from datetime import datetime
+from recipe import Recipe
 
 class Book:
     def __init__(self, name):
@@ -17,3 +18,21 @@ class Book:
             raise ValueError("Creation date must be a string")
         if not isinstance(self.recipe_list, list):
             raise ValueError("Recipe list must be a list")
+    
+    def get_recipe_by_name(self, name):
+        for recipe in self.recipe_list.values():
+            for meal in recipe:
+                if meal.name == name:
+                    return meal
+        return None
+
+    def get_recipes_by_types(self, recipe_type):
+        if recipe_type in self.recipe_list.keys():
+            return self.recipe_list[recipe_type]
+        return None
+    
+    def add_recipe(self, recipe):
+        if not isinstance(recipe, Recipe):
+            raise ValueError("Recipe must be a Recipe object")
+        self.recipe_list[recipe.recipe_type].append(recipe)
+        
